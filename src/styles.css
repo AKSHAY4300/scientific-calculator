@@ -1,0 +1,99 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-digital: "Share Tech Mono", "Courier New", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-key: var(--key);
+  --color-key-foreground: var(--key-foreground);
+  --color-key-accent: var(--key-accent);
+  --color-key-op: var(--key-op);
+  --color-key-fn: var(--key-fn);
+  --color-key-equals: var(--key-equals);
+  --color-screen: var(--screen);
+  --color-screen-foreground: var(--screen-foreground);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-bar: var(--bar);
+}
+
+:root {
+  --background: oklch(0.97 0.005 100);
+  --foreground: oklch(0.15 0.02 260);
+  --surface: oklch(0.94 0.008 100);
+  --surface-2: oklch(0.99 0.003 100);
+  --screen: oklch(0.98 0.005 100);
+  --screen-foreground: oklch(0.15 0.02 260);
+  --key: oklch(1 0 0);
+  --key-foreground: oklch(0.15 0.02 260);
+  --key-accent: oklch(0.75 0.15 60);
+  --key-op: oklch(0.7 0.14 30);
+  --key-fn: oklch(0.65 0.14 250);
+  --key-equals: oklch(0.65 0.18 145);
+  --border: oklch(0.85 0.01 260);
+  --muted-foreground: oklch(0.45 0.02 260);
+  --bar: 255 255 255;
+}
+
+.dark {
+  --background: oklch(0.08 0.01 260);
+  --foreground: oklch(0.98 0.005 260);
+  --surface: oklch(0.12 0.02 260);
+  --surface-2: oklch(0.16 0.02 260);
+  --screen: oklch(0.05 0.01 260);
+  --screen-foreground: oklch(0.98 0.005 260);
+  --key: oklch(0.2 0.02 260);
+  --key-foreground: oklch(0.98 0.005 260);
+  --key-accent: oklch(0.7 0.18 60);
+  --key-op: oklch(0.65 0.2 25);
+  --key-fn: oklch(0.6 0.2 260);
+  --key-equals: oklch(0.65 0.2 145);
+  --border: oklch(0.25 0.02 260);
+  --muted-foreground: oklch(0.65 0.02 260);
+  --bar: 0 0 0;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+  }
+}
+
+@utility glass-key {
+  background: color-mix(in oklab, var(--color-key) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 8%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, white 30%, transparent) inset,
+    0 8px 24px -12px color-mix(in oklab, black 40%, transparent);
+  transition: transform 120ms ease, background 200ms ease, box-shadow 200ms ease;
+}
+
+@utility glass-bar {
+  background: rgb(var(--bar) / 0.5);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-foreground) 8%, transparent);
+}
+
+@utility glass-footer {
+  background: rgb(var(--bar) / 0.5);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-top: 1px solid color-mix(in oklab, var(--color-foreground) 8%, transparent);
+}
+
+@utility digital {
+  font-family: var(--font-digital);
+  letter-spacing: 0.02em;
+}
